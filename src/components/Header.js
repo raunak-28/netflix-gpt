@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
+import { addGptMovieResult, toggleGptSearchView } from "../utils/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -39,6 +41,11 @@ const Header = () => {
       });
   };
 
+  const handleGptSearhClick = () => {
+    dispatch(toggleGptSearchView());
+    dispatch(addGptMovieResult({ movieNames: [], movieResults: [] }));
+  };
+
   return (
     <div className="absolute w-screen z-10 px-8 py-2 bg-gradient-to-b from-black flex justify-between">
       <img
@@ -48,6 +55,12 @@ const Header = () => {
       />
       {user && (
         <div className="flex p-2 items-center">
+          <button
+            className="py-2 px-4 bg-purple-700 text-white rounded-md my-2 mx-4"
+            onClick={() => handleGptSearhClick()}
+          >
+            {showGptSearch ? "Home" : "GPT Search"}
+          </button>
           <img
             className="w-10 h-10 mx-4 rounded-md"
             alt="user Icon"
