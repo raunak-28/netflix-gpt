@@ -4,7 +4,7 @@ import GptMovieSuggestions from "./GptMovieSuggestions";
 
 const GptSearchPage = () => {
   return (
-    <div className=" bg-black bg-opacity-90 h-svh">
+    <div className=" bg-black bg-opacity-90 h-svh pt-[30%">
       <GptSearchBar />
       <GptMovieSuggestions />
     </div>
