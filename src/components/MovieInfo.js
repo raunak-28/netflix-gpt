@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import VideoTitle from "./VideoTitle";
 import { API_OPTIONS } from "../utils/constants";
 
 const MovieInfo = ({ movie, setShowDetails }) => {
@@ -13,7 +12,6 @@ const MovieInfo = ({ movie, setShowDetails }) => {
     const json = await data.json();
     const trailers = json.results.filter((video) => video.type === "Trailer");
     const displayTrailer = trailers.length ? trailers[0] : json.results[0];
-    console.log(displayTrailer, "displayTrailer");
     setVideoKey(displayTrailer.key);
   };
 
