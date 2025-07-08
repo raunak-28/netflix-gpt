@@ -48,7 +48,7 @@ const Login = () => {
             })
             .catch((error) => {
               // An error occurred
-              // ...
+              console.log(error);
             });
         })
         .catch((error) => {
@@ -64,11 +64,13 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
+          let user = userCredential.user;
+          user = "";
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
         });
     }
   };
